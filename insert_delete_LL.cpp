@@ -103,6 +103,13 @@ int main()
             else if (in_input == 2)
             {
                 int size = getsize(head);
+                if (size == 1)
+                {
+                    tail->next = vignesh;
+                    tail = vignesh;
+                }
+                else
+                {
                 int mid;
                 if (size % 2 == 0)
                 {
@@ -111,6 +118,7 @@ int main()
                 else
                     mid = size / 2 + 1;
                 addmiddle(head, mid, vignesh);
+                }
             }
             else if (in_input == 3)
             {
