@@ -6,6 +6,26 @@ struct Node
     int data;
     Node *next;
 };
+
+Node *reverse(Node *head)
+{
+
+    Node *previous = NULL;
+    Node *next2;
+    Node *current = head;
+    while (current != NULL)
+    {
+        next2 = current->next;
+        current->next = previous;
+        if (next2 == NULL)
+        {
+            break;
+        }
+        previous = current;
+        current = next2;
+    }
+    return current;
+};
 int getsize(Node *start)
 {
     Node *ptr = start;
@@ -72,7 +92,7 @@ int main()
     Node *tail = NULL;
     while (1)
     {
-        cout << "Press 1 to insert 2 to delete 3 to print or any other key to exit" << endl;
+        cout << "Press 1 to insert 2 to delete 3 to print 4 to reverse or any other key to exit" << endl;
         int user_input;
         cin >> user_input;
         if (user_input == 1)
@@ -110,14 +130,14 @@ int main()
                 }
                 else
                 {
-                int mid;
-                if (size % 2 == 0)
-                {
-                    mid = size / 2;
-                }
-                else
-                    mid = size / 2 + 1;
-                addmiddle(head, mid, vignesh);
+                    int mid;
+                    if (size % 2 == 0)
+                    {
+                        mid = size / 2;
+                    }
+                    else
+                        mid = size / 2 + 1;
+                    addmiddle(head, mid, vignesh);
                 }
             }
             else if (in_input == 3)
@@ -128,11 +148,18 @@ int main()
         }
         else if (user_input == 2)
         {
-            int val;
-            cout << "Press 1 to delete 1st number , 2 to middle number , 3 to ending number";
-            cin >> val;
 
-            if (val == 1)
+            int val;
+            cout << "Press 1 to delete 1st number , 2 to middle number , 3 to ending number \n";
+            cin >> val;
+            int size = getsize(head);
+            if (size == 0)
+            {
+                cout << "List is empty               ";
+                cout << endl;
+            }
+
+            else if (val == 1)
             {
                 head = head->next;
             }
@@ -160,6 +187,11 @@ int main()
 
         else if (user_input == 3)
         {
+            int size = getsize(head);
+            if (size == 0)
+            {
+                cout << "Linked list is empty.";
+            }
             Node *display = head;
             while (display != NULL)
             {
@@ -167,6 +199,15 @@ int main()
                 display = display->next;
             }
             cout << endl;
+        }
+        else if (user_input == 4)
+        {
+            head = reverse(head);
+            Node *h = head;
+            while (h != NULL)
+            {
+                h = h->next;
+            }
         }
         else
         {
